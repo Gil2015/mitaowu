@@ -1,9 +1,9 @@
-# mitaowu
+# 开发
 
-`yarn add`
+`yarn`
 
 `npm start`
 
 # ui
 
-https://garou-creators.com/
+`npm run ui` 浏览器打开localhost:5500

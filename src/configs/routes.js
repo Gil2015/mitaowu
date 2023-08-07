@@ -4,6 +4,10 @@ import NotFound from '@/pages/404';
 
 export default [
   {
+    path: '/',
+    component: Home,
+  },
+  {
     path: '/home',
     component: Home,
   },
