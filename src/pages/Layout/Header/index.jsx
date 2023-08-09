@@ -40,7 +40,7 @@ const Header = () => {
     <div class="layout-header">
       <div className="default-header">
         <div class="logo">
-          <img src="public/cls_logo.jpg" />
+          <img src="public/logo.png" />
         </div>
         <div class="show-btn" onClick={() => setShowNav(true)}>
           <span></span>
