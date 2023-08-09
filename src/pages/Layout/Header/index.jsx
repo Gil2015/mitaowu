@@ -29,7 +29,7 @@ const navList = [
 const menuList = [
   { title: '线上商城', path: '' },
   { title: '关于我们', path: '/about' },
-  { title: '联系我们', path: '/concat' },
+  { title: '联系我们', path: '/contact' },
 ];
 
 const Header = () => {
