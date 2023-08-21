@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import cls from 'classnames';
 import { Link } from 'react-router-dom';
 import './style.less';
@@ -7,22 +7,22 @@ const navList = [
   {
     title: '九子系列',
     path: '/detail/nine',
-    img: 'public/cls_jiuzi.jpg',
+    img: '/cls_jiuzi.jpg',
   },
   {
     title: '机车系列',
     path: '/detail/loco',
-    img: 'public/cls_jiche.jpg',
+    img: '/cls_jiche.jpg',
   },
   {
     title: '情人节系列',
     path: '/detail/lover',
-    img: 'public/cls_qing.jpg',
+    img: '/cls_qing.jpg',
   },
   {
     title: '球宝贝系列',
     path: '/detail/ball',
-    img: 'public/cls_qiu.jpg',
+    img: '/cls_qiu.jpg',
   },
 ];
 
@@ -36,11 +36,17 @@ const Header = () => {
   const [showNav, setShowNav] = useState(false);
   const [activeNav, setActiveNav] = useState(0);
 
+  const hideNav = useCallback(() => {
+    setShowNav(false);
+  });
+
   return (
     <div class="layout-header">
       <div className="default-header">
         <div class="logo">
-          <img src="public/logo.png" />
+          <Link to="/home">
+            <img src="/logo.png" />
+          </Link>
         </div>
         <div class="show-btn" onClick={() => setShowNav(true)}>
           <span></span>
@@ -48,10 +54,7 @@ const Header = () => {
         </div>
       </div>
       <div className={cls('header-con', { active: showNav })}>
-        <div
-          class={cls('close-btn', { active: showNav })}
-          onClick={() => setShowNav(false)}
-        >
+        <div class={cls('close-btn', { active: showNav })} onClick={hideNav}>
           <span></span>
           <span></span>
         </div>
@@ -61,7 +64,7 @@ const Header = () => {
               <img class="cls-img" src={navList[activeNav - 1].img} />
             ) : (
               <div class="logo-blk">
-                <img class="img-logo" src="public/cls_logo.jpg" />
+                <img class="img-logo" src="/cls_logo.jpg" />
               </div>
             )}
           </div>
@@ -74,6 +77,7 @@ const Header = () => {
                   key={idx}
                   onMouseOver={() => setActiveNav(idx + 1)}
                   onMouseLeave={() => setActiveNav(0)}
+                  onClick={hideNav}
                 >
                   <Link to={path}>{title}</Link>
                 </li>
@@ -81,7 +85,7 @@ const Header = () => {
             </ul>
             <ul class="menu-list">
               {menuList.map(({ title, path }) => (
-                <li className="menu-item" key={title}>
+                <li className="menu-item" key={title} onClick={hideNav}>
                   <Link to={path}>{title}</Link>
                 </li>
               ))}
